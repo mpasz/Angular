@@ -4,9 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses.component';
 import { CourseComponent } from './course/course.component';
+import { CoursesService } from './courses.service';
+import { TestService } from '../test.service';
 
 @NgModule({
-  declarations: [
+  declarations: [//rejestracja komponentow 
     AppComponent,
     CoursesComponent,
     CourseComponent
@@ -14,7 +16,7 @@ import { CourseComponent } from './course/course.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [CoursesService , TestService],   // rejestracja Serwisow w tej sekcji!!
   bootstrap: [AppComponent]
 })
 export class AppModule { }

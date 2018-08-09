@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { CoursesService } from './courses.service';
 
 @Component({
-    selector: 'courses' ,
+    selector: 'courses',
     template: //uzycie dyrektywy poprzedzamy znakiem * UWAGA po dyrektywie ngFor jest pętla analogiczna dp foreach
-        `'<h2>{{ getTitle() }}</h2>'
+        `<h2>{{ title }}</h2>
          <ul>
             <li *ngFor="let course of courses">  
                 {{course}}
@@ -13,12 +14,13 @@ import {Component} from '@angular/core';
 })
 
 export class CoursesComponent{
-    title = "List of courses"
+    title = "List of courses";
+    courses; 
 
-    courses = ["course1", "course2", "course3"];
-
-    getTitle(){
-        return this.title
+    constructor(private service: CoursesService) {
+        //let service = new CoursesService();
+        this.courses = service.getCourses();
     }
-
 }
+
+
