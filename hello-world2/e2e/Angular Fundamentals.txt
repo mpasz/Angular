@@ -1,0 +1,44 @@
+let -> sluzy do deklaracji zmiennych
+
+@Compoment TYP DECORATOR   
+zeby uzywac componentu trzeba zaimportowac 
+import { Component } from '@angular/core';
+
+-dodajemy własciwosci componentu w celu zdefiniowania jego pracy 
+    np . 
+    selector : 'courses'
+    template : do renderownaia komponentu!
+
+    tłumaczenie : gdziekolwiek angular trafi na element taki jak  'courses' wyswietli wszystkoz wlasciwosci template
+
+
+Aby komponent dzialal trzeba go zarejestrowac w app.module we własciwosci "declarations:" a następnie trzeba go użyc w app.component.html
+
+
+można to zrobic inaczej :
+komenda w terminalu : ng g (skrot od generate) c (skrot od component) name_od_component (bez rozszczerzenia)
+
+{{}} -> string interpolation
+
+Data Bingind : 
+    '<h2> {{ title }} </h2>'
+zamiast 
+    <h2> Courses </h2>
+
+String interpolation 
+    '<h2> {{"Title:" + title }} </h2>'
+
+
+
+
+` -> znak tyldy słuzy do pisania kodu w wielu linjkach
+
+dyrektywy - do manipulowania danymi
+znak specjalny * -> jesli korzystamy z dyrektywy ktora modyfikuje strukture danych (dodawanie i usuwanie elementow)
+
+
+Dla serviswow nie ma dekorator
+
+dependency injection -  constructor(service: CoursesService) = parametr dla konstruktora i rejestracja as a provider w app.module
+
+serwisy rejestrujym w app.module , we własciwosci providers
