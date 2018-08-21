@@ -1,0 +1,18 @@
+Property Binding (powiązanie wlasciwosci)
+ - <img [src] = "imageURL" />  -- to jest Property Binding
+ interpolacja znakow uzywana jest gdy chcemy dodawac dynamiczne wartosci do naglowka
+
+
+ Atribute Binding (powiazanie atrybutow)
+
+ DOM (Document Object Model) - model of object that represents the structure of a document. Tre of object in memory.
+ HTML represents DOM in text
+ Most of the HTML elements have a 1:1 mapping to propertys of DOM objects. Są wyjatki np 
+ <td [colspan]="colSpan"></td>  -> colspan nie ma odpowiednika w DOMie dlatego trzeba wstawi attr. przed colspan --> td [attr.colspan]="colSpan"></td>
+ 
+
+
+BOOTSTRAP to biblioteka CSS 
+instalacja w projekcie -> npm install bootstrap --save
+npm install na innym komputerze pobiera wszystkie wlasciwosci wpisane w pliku package.json
+
