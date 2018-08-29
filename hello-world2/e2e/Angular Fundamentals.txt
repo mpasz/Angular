@@ -42,3 +42,135 @@ Dla serviswow nie ma dekorator
 dependency injection -  constructor(service: CoursesService) = parametr dla konstruktora i rejestracja as a provider w app.module
 
 serwisy rejestrujym w app.module , we własciwosci providers
+
+class binding - 
+    syntax = [class.active] = "isActive"   -> to jast wiązanie klas
+         + 
+    export class CoursesComponent{
+  isActive = false;
+
+}
+
+style binding - 
+<button [style.backgroundColor] = "isActive ? 'blue' : 'white'"> Save </button> -- wyszukaj w google DOM Style Binding Properties
+
+event binding - 
+        @Component({ // komponent 
+            selector: 'courses',
+            template: 
+            `<div (click)="onDivClicked()">
+                    <button (click)="onSave($event)"> Save </button>
+            </div>
+
+            `
+        })
+
+        export class CoursesComponent{
+            onDivClicked(){
+            console.log("Div was clicked");
+            }
+        onSave($event){
+            $event.stopPropagation();
+
+            console.log("Button was clicked", $event);
+        }
+
+        }
+
+event filtering - 
+        @Component({ // komponent 
+            selector: 'courses',
+            template: 
+            `<input (keyup.enter) = "onKeyUp()" />
+
+            `
+        })
+        export class CoursesComponent{
+            onKeyUp(){
+                console.log("ENTER was pressed");
+            }
+
+        }
+
+Template variables - 
+    deklarujemy zmienne w template znakiem "#" np. #email -> poniżej przykład kodu 
+    
+    @Component({ // komponent 
+    selector: 'courses',
+    template: 
+    `<input #email (keyup.enter) = "onKeyUp(email.value)" />
+
+    `
+})
+
+export class CoursesComponent{
+    onKeyUp(email){
+        console.log(email);
+    }
+
+}
+
+Two-way Binding - 
+ do zaimlementowania wiązania w dwie strony służy następująca składania
+  "[()]" -> przykład poniżej
+ <input [(ngModel)] = "email" (keyup.enter) = "onKeyUp()" />
+
+
+ PIPE - 
+ używamy do formatowania danych
+    {{course.rating | number:'1.2-2'}} <br/> -> składnia number:'1.2-2' oznacza że wyswietla sie minimalnie 2 i maksymalnie dwa znaki po przecinku.
+    jesli bedziemy chcieli zobaczyc tylko jedna liczbe po przecinku to system nam zaokrągli całą liczbe w gore 
+    generalnie wszystko po znaku : i w ' ' to wlasciwosci
+    wyszukiwarka na stronie https://angular.io odnajdzie wszystkie wlasciwosci
+
+    przykład
+    @Component({ // komponent 
+    selector: 'courses',
+    template: 
+    `
+    {{course.title | uppercase }} <br/>
+    {{course.students | number }} <br/>
+    {{course.rating | number:'2.1-1'}} <br/>
+    {{course.price | currency: 'AUD' : true:'3.2-2'}} <br/>
+    {{course.releaseDate | date:'shortDate'}}
+
+    `
+})
+
+CUSTOM PIPE - 
+implements PipeTransform - mowi o tym ze klasa w ktore wystepuja taka skladnia przyjmuje dokladnie taki sam wyglada jak PipeTransfor interface
+
+summary.pipe.ts
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+    @Pipe({
+        name: 'summary'
+    })
+    export class SummaryPipe implements PipeTransform{
+        transform(value: string , limit?:number){
+                if(!value)
+                    return null;
+                
+                    let actualLimit = (limit) ? limit : 50
+                return value.substring(0, actualLimit) + '...';
+        }
+
+    }
+
+import { Component } from '@angular/core';   // import component decorator żeby użyc component
+import { CoursesService } from './courses.service';
+
+@Component({ // komponent 
+    selector: 'courses',
+    template: 
+    `
+        {{ text | summary: 10 }}
+    `
+})
+
+export class CoursesComponent{
+    text = `
+    sdasdsadddddd ad assssssssssssssssssssssssssssssssssssssssssssd sd sds
+    `
+    }

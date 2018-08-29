@@ -5,18 +5,13 @@ import { CoursesService } from './courses.service';
     selector: 'courses',
     template: 
     `
-            <button class ="btn btn-primary">Save</button>
+        {{ text | summary: 10 }}
     `
 })
 
 export class CoursesComponent{
- title = "List of courses";
- imageURL = "http://lorempixel.com/400/200";
- courses;
- colSpan = 2;
+    text = `
+    sdasdsadddddd ad assssssssssssssssssssssssssssssssssssssssssssd sd sds
+    `
+    }
 
- constructor(service: CoursesService) {
-     this.courses = service.getCourses();
-     
- }
-}
